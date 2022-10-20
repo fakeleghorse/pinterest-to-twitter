@@ -44,7 +44,7 @@ let blogName = 'pappater';
 let params = {}
 const directory = './media/image/'
 
-const tweetToTumblr = (imgUrl) =>{
+ async function tweetToTumblr (imgUrl) {
     try {
         fs.readdir(directory, (err, files) => {
             if (err) throw err;
@@ -114,7 +114,7 @@ async function doTumblrPhotoPost() {
     for (let i = 0, p = Promise.resolve(); i < feed.items.length; i++) {
         p = p.then(_ => new Promise(resolve => {
             let docRef = db.collection("tweeturls").doc("url");
-            docRef.get().then((doc) => {
+            docRef.get().then(async (doc) => {
                 if (doc.exists) {
                     let existingUrl = doc.data().data;
                     console.log("existingUrl", i);
@@ -129,7 +129,7 @@ async function doTumblrPhotoPost() {
                         //     console.log("posted to tumblr >>>>>");
                         //     resolve();
                         // });
-                        tweetToTumblr(imageUrlFirstLvl)
+                       await tweetToTumblr(imageUrlFirstLvl)
                         resolve();
                     }
                 } else {
@@ -145,11 +145,11 @@ async function doTumblrPhotoPost() {
 
 
 };
-doTumblrPhotoPost();
-cron.schedule("*/15 * * * *", () => {
-console.log("calling >>>>>>> doTumblrPhotoPost()");
-doTumblrPhotoPost();
-});
+// doTumblrPhotoPost();
+// cron.schedule("*/15 * * * *", () => {
+// console.log("calling >>>>>>> doTumblrPhotoPost()");
+// doTumblrPhotoPost();
+// });
 
 app.get('/', (req, res) => {
     res.send('hello world')
