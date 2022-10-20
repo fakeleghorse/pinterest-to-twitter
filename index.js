@@ -145,10 +145,11 @@ async function doTumblrPhotoPost() {
 
 
 };
-// cron.schedule("*/5 * * * *", () => {
+doTumblrPhotoPost();
+cron.schedule("*/15 * * * *", () => {
 console.log("calling >>>>>>> doTumblrPhotoPost()");
 doTumblrPhotoPost();
-// });
+});
 
 app.get('/', (req, res) => {
     res.send('hello world')
