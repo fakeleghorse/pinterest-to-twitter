@@ -123,7 +123,7 @@ async function doTumblrPhotoPost() {
                     params.source = imageUrlFirstLvl;
                     if (!existingUrl.includes(imageUrlFirstLvl)) {
                         console.log("no include");
-                        // db.collection("tweeturls").doc("url").set({ data: [...existingUrl, imageUrlFirstLvl] });
+                        db.collection("tweeturls").doc("url").set({ data: [...existingUrl, imageUrlFirstLvl] });
                         // post to tumblr
                         // client.createPhotoPost(blogName, params, function (err, resp) {
                         //     console.log("posted to tumblr >>>>>");
