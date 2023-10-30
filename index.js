@@ -53,7 +53,7 @@ function tweetToTumblr (imgUrl,) {
   
 }
 async function doTumblrPhotoPost() {
-    let feed = await parser.parseURL('https://in.pinterest.com/capecapricorn/pappater.rss');
+    let feed = await parser.parseURL('https://in.pinterest.com/pratantada/xkiopechirom.rss');
     for (let i = 0, p = Promise.resolve(); i < feed.items.length; i++) {
         p = p.then(_ => new Promise(resolve => {
             let docRef = db.collection("tweeturls").doc("url");
